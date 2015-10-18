@@ -10,4 +10,12 @@ for i=1:num_nodes
         hold on;
     end
 end
+for i=1:num_nodes
+    for j=1:num_nodes
+        if(net.connectionMat(i,j) > 0)
+            quiver(net.list_nodes{i}.x_, net.list_nodes{i}.y_,...
+                   net.list_nodes{j}.x_-net.list_nodes{i}.x_, net.list_nodes{j}.y_-net.list_nodes{i}.y_, 'AutoScale', 'off','color','b')
+        end
+    end
+end
 end
