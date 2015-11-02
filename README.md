@@ -45,11 +45,11 @@
 
 ## Implementation details
 The log dump for the main matlab code should be in the following format.
-[1 0 1 0 1 1 0 ] % the network connectivity matrix. (Upper triangular matrix)
-[              ]
-[              ]
-        Health, index of node, diseased or not(means exceeds resistance)
-example - 0.5,       125,           0 
-The bove line would mean node 125 is 50% healthy
+`[1 0 1 0 1 1 0 ] % the network connectivity matrix. (Upper triangular matrix)`
+`[              ]`
+`[              ]`
+`        Health, index of node, diseased or not(means exceeds resistance)`
+`example - 0.5,       125,           0 `
+The bove line would mean node 125 is 50% healthy`
 
 Each time stape should be put in a new file. for example 1.txt, 2.txt and so on.
