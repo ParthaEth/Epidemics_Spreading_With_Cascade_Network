@@ -59,7 +59,9 @@ classdef NetworkBase
         function this = delete(this, node)
             for i = 1:length(this.list_nodes)
                 if node.x_==this.list_nodes{i}.x_ && node.y_==this.list_nodes{i}.y_
-                % I am assuming coordinates are unique.
+                % I am assuming coordinates are unique. use node index
+                % instead/as well, overload function. Or as you need.
+                % something like function this = delete(this, node_index)
                     this.list_nodes(i) = [];
                     this.connectionMat(i,:) =[];
                     this.connectionMat(:,i)=[];
@@ -79,7 +81,7 @@ classdef NetworkBase
                 for indexConnedtedNode = 1:length(this.list_nodes)
                     effectFromNeighbours = effectFromNeighbours +...
                         this.connectionMat(indexCurrentNode, indexConnedtedNode)...
-                        *this.list_nodes{indexCurrentNode}.health_(2 + this.connectionDelayMat(indexCurrentNode, indexConnedtedNode))...
+                        *this.list_nodes{indexCurrentNode}.health_(1 + this.connectionDelayMat(indexCurrentNode, indexConnedtedNode))...
                         *exp(-this.list_nodes{indexCurrentNode}.Settings_.beta...
                         *this.connectionDelayMat(indexCurrentNode, indexConnedtedNode))...
                         /this.connectivityWeight(indexConnedtedNode);

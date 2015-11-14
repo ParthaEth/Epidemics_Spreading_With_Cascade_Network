@@ -8,11 +8,16 @@ classdef Node
         Settings_ = struct;
     end
     methods
-        function this = Node(varargin)%health, alpha, beta, resistanceThreshold
+        function this = Node(varargin)%health, alpha, beta, 
+            % resistanceThreshold
             if (nargin == 0)
                 error('Max number of past states to remember has to be set')
             end
-            this.health_ = zeros(varargin{1} + 2, 1); %atleast two state needs to be remembered % What is partha doing here?
+            this.health_ = zeros(varargin{1} + 1, 1); %atleast two state 
+            % needs to be remembered % What is partha doing here?-
+            % Creating enough places with neutral health values. If the max
+            % connection dely limit is set to 1 we need to keep two health
+            % values. 1 for current time and one from past time step.
             if (nargin == 1)
                 this.Settings_ = struct('alpha', 0.1,...
                     'beta', 0.025, ...
@@ -20,10 +25,11 @@ classdef Node
                     'recoveryRate', 4);
                 return;
             end
-            this.x_ = rand(1,1); % generates floats????????????????
+            this.x_ = rand(1,1); % generates floats? - generates doubles
             this.y_ = rand(1,1);
             settingParams = {'alpha', 'beta', ...
-                'resistanceThreshold', 'recoveryRate'}; % where is settingParams defined?
+                'resistanceThreshold', 'recoveryRate'}; % where is setting
+            %Params defined?
             if nargin > 5
                 error('Too many parameters');
             end
