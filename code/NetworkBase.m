@@ -9,8 +9,6 @@ classdef NetworkBase
         b;
     end
     methods
-        %TODO(Dinesh) : See if we could have a work around for the fact that
-        %now we hav to pass around the this object back and forth.
         function this = NetworkBase(varargin)
             switch nargin
                 case 0

@@ -2,6 +2,8 @@ classdef Node
     properties
         x_
         y_
+    end
+    properties (GetAccess = 'public', SetAccess = 'private')
         health_;
         Settings_ = struct;
     end
@@ -15,7 +17,7 @@ classdef Node
                 this.Settings_ = struct('alpha', 0.1,...
                     'beta', 0.025, ...
                     'resistanceThreshold', 0.5,...
-                    'recoveryRate', 0.1);
+                    'recoveryRate', 4);
                 return;
             end
             this.x_ = rand(1,1);
@@ -35,11 +37,16 @@ classdef Node
             this.y_ = y;
         end
         
+        function this = setCurrentHealth(this, health)
+            this.health_(1) = health;
+        end
+        
         function this = runNode(this, dt, effectFromNeighbours)
-            dx = -this.health_(1)/this.Settings_.recoveryRate +...
-                Sigmoid(this, effectFromNeighbours)*dt;
-            this.health_(2:end) = this.health_(1:end-1);
+            dx = (-this.health_(1)/this.Settings_.recoveryRate +...
+                Sigmoid(this, effectFromNeighbours))*dt;
             this.health_(1) = this.health_(1) + dx;
+            this.health_(end) = [];
+            this.health_ = [this.health_(1); this.health_];
         end
         
         function theta_y = Sigmoid(this, y)
