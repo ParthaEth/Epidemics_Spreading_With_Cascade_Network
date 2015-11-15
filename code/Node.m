@@ -10,7 +10,7 @@ classdef Node
             if (nargin == 0)
                 error('Max number of past states to remember has to be set')
             end
-            this.health_ = zeros(varargin{1} + 2, 1); %atleast two state needs to be remembered
+            this.health_ = zeros(varargin{1} + 2, 1); %atleast two state needs to be remembered % What is partha doing here?
             if (nargin == 1)
                 this.Settings_ = struct('alpha', 0.1,...
                     'beta', 0.025, ...
@@ -18,10 +18,10 @@ classdef Node
                     'recoveryRate', 0.1);
                 return;
             end
-            this.x_ = rand(1,1);
+            this.x_ = rand(1,1); % generates floats????????????????
             this.y_ = rand(1,1);
             settingParams = {'alpha', 'beta', ...
-                'resistanceThreshold', 'recoveryRate'};
+                'resistanceThreshold', 'recoveryRate'}; % where is settingParams defined?
             if nargin > 5
                 error('Too many parameters');
             end
