@@ -1,5 +1,5 @@
 classdef NetworkBase
-    % I though we will inherit this for a outer class but it looks like we
+    % I thought we will inherit this for a outer class but it looks like we
     % do not need to right now. So the name might not be very appropriate
     properties(SetAccess = public)
         list_nodes = cell(0);
@@ -58,6 +58,19 @@ classdef NetworkBase
             this.connectionMat(1:num_elem+1,num_elem+1) = zeros(num_elem+1,1);
         end
         % TODO(Dinesh) : Delete functionality may be needed
+        function this = delete(this, node)
+            for i = 1:length(this.list_nodes)
+                if node.x_==this.list_nodes{i}.x_ && node.y_==this.list_nodes{i}.y_
+                % I am assuming coordinates are unique.
+                    this.list_nodes(i) = [];
+                    this.connectionMat(i,:) =[];
+                    this.connectionMat(:,i)=[];
+                    this.connectionDelayMat(:,i) = [];
+                    this.connectionDelayMat(i,:) = [];
+                end
+            end
+        end
+        
         function this = simulateNetwork(this, dt)
             % Time delay is between the nodes is assumed to be zero now
             % The 't_ij' parameter in the paper
