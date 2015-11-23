@@ -21,7 +21,7 @@ classdef NetworkBase
                     error('Wrong number of arguments');
             end
         end
-        function this = connectAstoBs(this, As, Bs, DelayMat)
+        function this = connectAstoBs(this, As, Bs, StrengthMat, DelayMat)
             %directed connection from A to B
             len_As = length(As);
             len_Bs = length(Bs);
@@ -33,21 +33,26 @@ classdef NetworkBase
                 case 3
                     for i=1:len_As
                         for j=1:len_Bs
-                            this.connectionMat(As(i),Bs(j)) = 1;
+                            this.connectionMat(As(i),Bs(j)) = .5;
+                            %this.connectionMat(Bs(i),As(j)) = .5;
                             this.connectionDelayMat(As(i),Bs(j)) = 0;
+                            %this.connectionDelayMat(Bs(i),As(j)) = 0;
                         end
                     end
-                case 4
+                case 5
                     for i=1:len_As
                         for j=1:len_Bs
-                            this.connectionMat(As(i),Bs(j)) = 1;
-                            this.connectionDelayMat(As(i),Bs(j)) = DelayMat(i,j);
+                            this.connectionMat(As(i),Bs(j)) = StrengthMat(As(i), Bs(j));
+                            %this.connectionMat(Bs(j),As(i)) = StrengthMat(j, i);
+                            this.connectionDelayMat(As(i),Bs(j)) = DelayMat(As(i),Bs(j));
+                            %this.connectionDelayMat(Bs(i),As(j)) = DelayMat(Bs(i),As(j));
                         end
                     end
                 otherwise
                     error('Wrong number of arguments');
             end
         end
+        
         % TODO(Partha) : Add undirected connection functionality
         function this = addNode(this, node)
             num_elem = length(this.list_nodes);
@@ -56,19 +61,19 @@ classdef NetworkBase
             this.connectionMat(1:num_elem+1,num_elem+1) = zeros(num_elem+1,1);
         end
         % TODO(Dinesh) : Delete functionality may be needed
-        function this = delete(this, node)
-            for i = 1:length(this.list_nodes)
-                if node.x_==this.list_nodes{i}.x_ && node.y_==this.list_nodes{i}.y_
-                % I am assuming coordinates are unique. use node index
+        function this = delete(this, node_index)
+            % for i = 1:length(this.list_nodes)
+                % if node.x_==this.list_nodes{i}.x_ && node.y_==this.list_nodes{i}.y_
+                % use(ing) node index
                 % instead/as well, overload function. Or as you need.
                 % something like function this = delete(this, node_index)
-                    this.list_nodes(i) = [];
-                    this.connectionMat(i,:) =[];
-                    this.connectionMat(:,i)=[];
-                    this.connectionDelayMat(:,i) = [];
-                    this.connectionDelayMat(i,:) = [];
-                end
-            end
+                    this.list_nodes(node_index) = [];
+                    this.connectionMat(node_index,:) =[];
+                    this.connectionMat(:,node_index)=[];
+                    this.connectionDelayMat(:,node_index) = [];
+                    this.connectionDelayMat(node_index,:) = [];
+                % end
+            % end
         end
         
         function this = simulateNetwork(this, dt)
@@ -79,6 +84,7 @@ classdef NetworkBase
                 % This still performs directed graph structure. Can be made
                 % more efficient if we assume no directivity
                 for indexConnedtedNode = 1:length(this.list_nodes)
+                    
                     effectFromNeighbours = effectFromNeighbours +...
                         this.connectionMat(indexCurrentNode, indexConnedtedNode)...
                         *this.list_nodes{indexCurrentNode}.health_(1 + this.connectionDelayMat(indexCurrentNode, indexConnedtedNode))...
@@ -90,8 +96,11 @@ classdef NetworkBase
             end
         end
         function weight = connectivityWeight(this, indexConnedtedNode)
+            % this.connectionMat
             O_j = find(this.connectionMat(indexConnedtedNode,:) > 0);
             weight = this.a*O_j/(1 + this.b * O_j);
         end
     end
 end
+
+
