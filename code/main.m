@@ -1,20 +1,39 @@
-clc
-clear all
-close all
+%clc
+%clear all
+%close all
 % TODO(Dinesh) : Can you write some unit tests?
 %%%%%%%%%Set parameters%%%%%%%%
 timeStep = 0.1;
 maxConnectionDelay = 2; %in unit of timeSteps
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%{
+readData = load('myNetwork.txt');
+nNodes = size(readData, 1)/2;
+connectionDelayMat = readData(1:nNodes, :);
+strengthMat = readData(nNodes+1:end, :);
 net = NetworkBase;
+maxConnectionDelay = max(connectionDelayMat(:))/dt;
+for i = 1:(nNodes)
+    for j =  1:(nNodes)
+        if connectionDelayMat(i,j)>0
+            node = 
+        end
+        %node(i) = Node(maxConnectionDelay, 0.1, 0.025, 0.5, 0.1);
+    end
+end
+%}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+net = NetworkBaseNew;
 node = Node(maxConnectionDelay, 0.1, 0.025, 0.5, 0.1);
-node = node.setPos(0,0);
+%node = node.setPos(0,0);
 net = net.addNode(node);
 node = Node(maxConnectionDelay, 0.1, 0.025, 0.5, 0.2);
-node = node.setPos(1,1);
+%node = node.setPos(1,1);
 net = net.addNode(node);
-net = net.connectAstoBs(1,2,[0, 0.3; 0.3, 0]); %directed connection frm A to B
-net = net.connectAstoBs(2,1,[0, 0.3; 0.3, 0]);
+net = net.connectAstoBs(1,2,[0, 0.3; 0.3, 0], [0, 0.3; 0.3, 0]); %directed connection frm A to B
+net = net.connectAstoBs(2,1,[0, 0.3; 0.3, 0], [0, 0.3; 0.3, 0]);
 net.list_nodes{1} = net.list_nodes{1}.setCurrentHealth(0.5);
 net.list_nodes{2} = net.list_nodes{2}.setCurrentHealth(0);
 net = net.simulateNetwork(timeStep);
