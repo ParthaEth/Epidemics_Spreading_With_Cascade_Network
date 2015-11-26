@@ -14,7 +14,6 @@ classdef Node
                 error('Max number of past states to remember has to be set')
             end
             this.health_ = zeros(varargin{1} + 1, 1); %atleast two state 
-            % needs to be remembered % What is partha doing here?-
             % Creating enough places with neutral health values. If the max
             % connection dely limit is set to 1 we need to keep two health
             % values. 1 for current time and one from past time step.
@@ -50,9 +49,16 @@ classdef Node
         function this = runNode(this, dt, effectFromNeighbours)
             dx = (-this.health_(1)/this.Settings_.recoveryRate +...
                 Sigmoid(this, effectFromNeighbours))*dt;
-            this.health_(1) = this.health_(1) + dx;
+            % Mistakes: I see mistakes here. Partha's version is commented
+            % in your version, for final value, health_(1)=health_(2)
+            %this.health_(1) = this.health_(1) + dx;
+            %this.health_(end) = [];
+            %this.health_ = [this.health_(1); this.health_];
+            
+            h1 = this.health_(1) + dx;
             this.health_(end) = [];
-            this.health_ = [this.health_(1); this.health_];
+            this.health_ = [h1; this.health_];
+            
         end
         
         function theta_y = Sigmoid(this, y)
