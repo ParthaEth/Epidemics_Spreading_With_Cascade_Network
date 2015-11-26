@@ -42,9 +42,12 @@ classdef NetworkBase
                 case 5
                     for i=1:len_As
                         for j=1:len_Bs
-                            this.connectionMat(As(i),Bs(j)) = StrengthMat(As(i), Bs(j));
+                            %'inside'
+                            %Strength(i,j)
+                            %Delay(i,j)
+                            this.connectionMat(As(i),Bs(j)) = StrengthMat(i, j);
                             %this.connectionMat(Bs(j),As(i)) = StrengthMat(j, i);
-                            this.connectionDelayMat(As(i),Bs(j)) = DelayMat(As(i),Bs(j));
+                            this.connectionDelayMat(As(i),Bs(j)) = DelayMat(i, j);
                             %this.connectionDelayMat(Bs(i),As(j)) = DelayMat(Bs(i),As(j));
                         end
                     end
@@ -59,7 +62,11 @@ classdef NetworkBase
             this.list_nodes{num_elem+1} = node;
             this.connectionMat(num_elem+1,1:num_elem) = zeros(1,num_elem);
             this.connectionMat(1:num_elem+1,num_elem+1) = zeros(num_elem+1,1);
+            % same for connectionDelayMat
+            this.connectionDelayMat(num_elem+1,1:num_elem) = zeros(1,num_elem);
+            this.connectionDelayMat(1:num_elem+1,num_elem+1) = zeros(num_elem+1,1);
         end
+        
         % TODO(Dinesh) : Delete functionality may be needed
         function this = delete(this, node_index)
             % for i = 1:length(this.list_nodes)
@@ -84,10 +91,10 @@ classdef NetworkBase
                 % This still performs directed graph structure. Can be made
                 % more efficient if we assume no directivity
                 for indexConnedtedNode = 1:length(this.list_nodes)
-                    
+                    healthIndex = round(1 + this.connectionDelayMat(indexCurrentNode, indexConnedtedNode)/dt);
                     effectFromNeighbours = effectFromNeighbours +...
                         this.connectionMat(indexCurrentNode, indexConnedtedNode)...
-                        *this.list_nodes{indexCurrentNode}.health_(1 + this.connectionDelayMat(indexCurrentNode, indexConnedtedNode))...
+                        *this.list_nodes{indexCurrentNode}.health_(healthIndex)...
                         *exp(-this.list_nodes{indexCurrentNode}.Settings_.beta...
                         *this.connectionDelayMat(indexCurrentNode, indexConnedtedNode))...
                         /this.connectivityWeight(indexConnedtedNode);
@@ -95,6 +102,7 @@ classdef NetworkBase
                 this.list_nodes{indexCurrentNode} = this.list_nodes{indexCurrentNode}.runNode(dt, effectFromNeighbours);
             end
         end
+        
         function weight = connectivityWeight(this, indexConnedtedNode)
             % this.connectionMat
             O_j = find(this.connectionMat(indexConnedtedNode,:) > 0);
