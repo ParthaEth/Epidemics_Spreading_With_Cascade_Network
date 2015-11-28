@@ -86,18 +86,19 @@ classdef NetworkBase
         function this = simulateNetwork(this, dt)
             % Time delay is between the nodes is assumed to be zero now
             % The 't_ij' parameter in the paper
-            effectFromNeighbours = 0;
+            
             for indexCurrentNode = 1:length(this.list_nodes)
                 % This still performs directed graph structure. Can be made
                 % more efficient if we assume no directivity
+                effectFromNeighbours = 0;
                 for indexConnedtedNode = 1:length(this.list_nodes)
                     healthIndex = round(1 + this.connectionDelayMat(indexCurrentNode, indexConnedtedNode)/dt);
                     effectFromNeighbours = effectFromNeighbours +...
                         this.connectionMat(indexCurrentNode, indexConnedtedNode)...
-                        *this.list_nodes{indexCurrentNode}.health_(healthIndex)...
+                        *this.list_nodes{indexConnedtedNode}.health_(healthIndex)...
                         *exp(-this.list_nodes{indexCurrentNode}.Settings_.beta...
                         *this.connectionDelayMat(indexCurrentNode, indexConnedtedNode))...
-                        /this.connectivityWeight(indexConnedtedNode);
+                        /this.connectivityWeight(indexConnedtedNode)
                 end
                 this.list_nodes{indexCurrentNode} = this.list_nodes{indexCurrentNode}.runNode(dt, effectFromNeighbours);
             end
