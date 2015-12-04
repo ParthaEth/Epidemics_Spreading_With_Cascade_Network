@@ -9,8 +9,8 @@
 \usepackage{amssymb, amsmath}
 \DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
 
-%\title{Title}
-%\author{Name 1, Name 2}
+%\title{Robustness Analysis of Social Networks under Different Attack Models}
+%\author{Name 1, Name 2, }
 %\date{date} 
 
 \begin{document}
@@ -28,7 +28,6 @@
 
 \bigskip
 
-
 \large We hereby agree to make our source code for this project freely available for download from the web pages of the SOMS chair. Furthermore, we assure that all source code is written by ourselves and is not violating any copyright restrictions.
 
 \begin{center}
@@ -39,13 +38,13 @@
 \bigskip
 
 
-\begin{tabular}{@{}p{3.3cm}@{}p{6cm}@{}@{}p{6cm}@{}}
+\begin{tabular}{@{}p{1cm}@{}p{5cm}@{}@{}p{5cm}@{}@{}p{5cm}}
 \begin{minipage}{3cm}
 
 \end{minipage}
 &
 \begin{minipage}{6cm}
-\vspace{2mm} \large Name 1
+\vspace{2mm} \large Acharya, Dinesh
 
  \vspace{\baselineskip}
 
@@ -53,7 +52,13 @@
 &
 \begin{minipage}{6cm}
 
-\large Name 2
+\large Ghosh, Partha
+
+\end{minipage}
+&
+\begin{minipage}{6cm}
+
+\large Thapa, Manish Jung
 
 \end{minipage}
 \end{tabular}
@@ -81,10 +86,44 @@
 
 
 \section{Abstract}
+Cascading failures 
+
 
 \section{Individual contributions}
 
+
+
 \section{Introduction and Motivations}
+
+\subsection{Literature Review}
+Most of the disease models categorise the given population into different categories and model the evolution of number of population in each of those categories with a set of differential equations. The popular susceptible infectious recovered (SIR) model is modelled by following set of differential equations:
+\[ \frac{dS}{dt} = bN - \lambda S - dS,  \]
+\[ \frac{dI}{dt} = \lambda S - gI - dI, \]
+\[ \frac{dR}{dt} = gI - dR. \]
+
+where $N = S + R + I$ is the total population size, $\lambda$ is the rate at which infectious individuals become infected, $g$ is the rate of recovery from infection, $d$ is the natural death rate and $b$ is the birth rate. The SIR models the diseases where there is no chance of infection once infected such as in the case of measles. Another popular model is susceptible-infectious-susceptible $SIS$ model which is given by following set of differential equations:
+\[ \frac{dS}{dt} = gI - \lambda S,  \]
+\[ \frac{dI}{dt} = \lambda S - gI. \]
+
+SIS model is used to model diseases where there are high chances of repeated infections such as in the case of STDs like Chlamydia.
+
+These standard models do not take into account the fact that pattern of interactions at individual level also play significant role in spread of disease. Standard Network Theoretic modelling of disease spread takes into account this factor by considering the network of individuals. Each individual is considered as a node and the connection between possible interraction or contact between individuals is considered as a edge on the graph. The adjacency matrix $A$ is constructed such that $A_{ij} = 1$ if the disease can transfer from individual $i$ to individual $j$ and $0$ otherwise. The properties of the adjacency matrix can be studied to deduce about the structure of the network. To simulate disease spread in the network, different techniques has been used. One model uses simple equation
+\[ \text {rate of infection} = \text{transmission rate} \times \text{number of infectious nodes in neighbourhood} \] is used. This has been discussed in more details on "Networks and Epidemic Models". 
+
+Similarly, the effect of structure of network on topology has been discussed in "The impacts of network topology on disease spread". There the authors use a probabilistic model to simulate the spread of disease in the network. At each step of simulation, a vertex was randomly picked. It then infects all of the neighbouring nodes with given probability of infection. The vertices remain infectious only for a certain latency period. After that, they are no more infectious and also immune to disease.
+
+\subsection{Research Problem}
+In this paper, we use a different differential equation to simulate the spread of disease in the network. We implement and discuss the cascading model by Helbing for disaster spread in terms of disease spread. Rather than spread of disease within a given population, we look at spread of disease across cities in the whole world. So vertices represent cities rather than individuals in the given population. 
+
+With such differential equation, disease spreading in a social network (like cities or countries) will be investigated.  Our analysis is based on N-1 contingency. Meaning, it will be investigated whether or not the system is robust under single node failure; here failure implies node being infected by a disease. The goal of the project is to run N-1 contingency analysis with each of the nodes of the network attacked, for various kinds of real and artificial networks, and investigate which network is the most robust one. Various attack models will be used in the project- 
+
+\begin{itemize}
+\item Targeted attacks
+\item Random attacks
+\item Attack under certain probability distribution
+\end{itemize}
+
+ The number of nodes that fail, under the attack of initial node, will be registered. The same will be done for all the nodes in the network. The result will be averaged out and normalized with the system size and threshold parameter $\theta$ of the network. This will be done for several real and artificial networks, and the result compared to see the robustness of these networks under these attack models. Ultimately, the aim of this project is to construct a weighted robustness metric for social networks, which can very well be used across many disciplines like gas flow network, electricity grids, etc. given the dynamics of the cascading failure follows the differential equation. In addition, the evolution of cascading failure will also be investigated in the project. In other words, number of nodes that fail in each iteration also will be recorded, and the evolution of failing nodes displayed for each iteration.
 
 \section{Description of the Model}
 
@@ -95,11 +134,6 @@
 \section{Summary and Outlook}
 
 \section{References}
-
-
-
-
-
 
 \end{document}  
 
