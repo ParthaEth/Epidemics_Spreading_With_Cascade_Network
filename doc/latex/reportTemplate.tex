@@ -5,8 +5,11 @@
 \usepackage{graphicx}
 \usepackage{amssymb}
 \usepackage{epstopdf}
-\usepackage{natbib}
+%\usepackage{natbib}
 \usepackage{amssymb, amsmath}
+%\usepackage{cite}
+
+
 \DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
 
 %\title{Robustness Analysis of Social Networks under Different Attack Models}
@@ -83,15 +86,10 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-
 \section{Abstract}
 Cascading failures 
 
-
 \section{Individual contributions}
-
-
 
 \section{Introduction and Motivations}
 
@@ -107,13 +105,13 @@ where $N = S + R + I$ is the total population size, $\lambda$ is the rate at whi
 
 SIS model is used to model diseases where there are high chances of repeated infections such as in the case of STDs like Chlamydia.
 
-These standard models do not take into account the fact that pattern of interactions at individual level also play significant role in spread of disease. Standard Network Theoretic modelling of disease spread takes into account this factor by considering the network of individuals. Each individual is considered as a node and the connection between possible interraction or contact between individuals is considered as a edge on the graph. The adjacency matrix $A$ is constructed such that $A_{ij} = 1$ if the disease can transfer from individual $i$ to individual $j$ and $0$ otherwise. The properties of the adjacency matrix can be studied to deduce about the structure of the network. To simulate disease spread in the network, different techniques has been used. One model uses simple equation
-\[ \text {rate of infection} = \text{transmission rate} \times \text{number of infectious nodes in neighbourhood} \] is used. This has been discussed in more details on "Networks and Epidemic Models". 
+These standard models do not take into account the fact that pattern of interactions at individual level also play significant role in spread of disease. Standard Network Theoretic modelling of disease spread takes into account this factor by considering the network of individuals. Each individual is considered as a node and the possible interactions or contact between individuals is considered as a edge on the graph. The adjacency matrix $A$ is constructed such that $A_{ij} = 1$ if the disease can transfer from individual $i$ to individual $j$ and $0$ otherwise. The properties of the adjacency matrix can be studied to deduce about the structure of the network. To simulate disease spread in the network, different techniques has been used. One such model uses simple equation
+\[ \text {rate of infection} = \tau \times n \] where n is number of infectious nodes in neighbourhood, $\tau$ is transmission rate. This has been discussed in more details on \cite{keeling}.
 
-Similarly, the effect of structure of network on topology has been discussed in "The impacts of network topology on disease spread". There the authors use a probabilistic model to simulate the spread of disease in the network. At each step of simulation, a vertex was randomly picked. It then infects all of the neighbouring nodes with given probability of infection. The vertices remain infectious only for a certain latency period. After that, they are no more infectious and also immune to disease.
+Similarly, the effect of structure of network on topology has been discussed in \cite{shirley}. There the authors use a probabilistic model to simulate the spread of disease in the network. At each step of simulation, a vertex was randomly picked. It then infects all of the neighbouring nodes with given probability of infection. The vertices remain infectious only for a certain latency period. After that, they are no more infectious and also immune to disease.
 
 \subsection{Research Problem}
-In this paper, we use a different differential equation to simulate the spread of disease in the network. We implement and discuss the cascading model by Helbing for disaster spread in terms of disease spread. Rather than spread of disease within a given population, we look at spread of disease across cities in the whole world. So vertices represent cities rather than individuals in the given population. 
+In this paper, we use a different differential equation to simulate the spread of disease in the network. We implement and discuss the cascading model by Helbing for disaster spread in terms of disease spread. Rather than spread of disease within a given population as in majority of related works, we look at spread of disease across cities in the whole world. So vertices represent cities rather than individuals in the given population.
 
 With such differential equation, disease spreading in a social network (like cities or countries) will be investigated.  Our analysis is based on N-1 contingency. Meaning, it will be investigated whether or not the system is robust under single node failure; here failure implies node being infected by a disease. The goal of the project is to run N-1 contingency analysis with each of the nodes of the network attacked, for various kinds of real and artificial networks, and investigate which network is the most robust one. Various attack models will be used in the project- 
 
@@ -133,10 +131,14 @@ With such differential equation, disease spreading in a social network (like cit
 
 \section{Summary and Outlook}
 
-\section{References}
+\begin{thebibliography}{9}
+\bibitem{shirley} Shirley, Mark D.F. and Rushton, Steve P. \textit{ The impacts of network topology on disease spread }, Ecological Complexity, 2005.
 
-\end{document}  
+\bibitem{helbing} Buzna, Lubos; Peters, Karsten; Ammoser, Hendrik;  Kuhnert, Christian and Helbing, Dirk.\textit{ Efficient Response to Cascading Disaster Spreading } .
 
+\bibitem{keeling}
+Keeling, Matt J. and Ken T.D. Eames. \textit{ Networks and Epidemic Models } Journal of the Royal Society Interface 2.4 (2005): 295–307. PMC. Web. 7 Dec. 2015.
 
+\end{thebibliography}
 
- 
+\end{document}
