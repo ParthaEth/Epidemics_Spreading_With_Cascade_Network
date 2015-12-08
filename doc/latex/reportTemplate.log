@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.12.15)  8 DEC 2015 19:15
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.12.15)  8 DEC 2015 19:52
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -441,12 +441,21 @@ File: images/avgbetad.jpg Graphic file (type jpg)
 <use images/avgbetad.jpg>
 Package pdftex.def Info: images/avgbetad.jpg used on input line 162.
 (pdftex.def)             Requested size: 210.70462pt x 158.0259pt.
+ <images/periter.jpg, id=52, 562.1pt x 421.575pt>
+File: images/periter.jpg Graphic file (type jpg)
+
+<use images/periter.jpg>
+Package pdftex.def Info: images/periter.jpg used on input line 168.
+(pdftex.def)             Requested size: 258.00539pt x 193.50229pt.
  [10 <./images/avgbetaa.jpg> <./images/avgbetab.jpg> <./images/avgbetac.jpg> <.
-/images/avgbetad.jpg>]
+/images/avgbetad.jpg>] [11 <./images/periter.jpg>]
+[12
+
+]
 Missing character: There is no â in font cmr12!
 Missing character: There is no € in font cmr12!
 Missing character: There is no “ in font cmr12!
- [11] (./reportTemplate.aux)
+ [13] (./reportTemplate.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
@@ -456,10 +465,10 @@ LaTeX Warning: There were multiply-defined labels.
 ### semi simple group (level 1) entered at line 1 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 4194 strings out of 493488
- 62168 string characters out of 3141325
+ 4199 strings out of 493488
+ 62270 string characters out of 3141325
  126419 words of memory out of 3000000
- 7423 multiletter control sequences out of 15000+200000
+ 7427 multiletter control sequences out of 15000+200000
  15250 words of font info for 59 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
  44i,10n,42p,1077b,378s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -474,10 +483,10 @@ mmi9.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
 fb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb>
 </usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><
 /usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on reportTemplate.pdf (11 pages, 397303 bytes).
+Output written on reportTemplate.pdf (13 pages, 412314 bytes).
 PDF statistics:
- 99 PDF objects out of 1000 (max. 8388607)
- 60 compressed objects within 1 object stream
+ 107 PDF objects out of 1000 (max. 8388607)
+ 65 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 46 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 51 words of extra memory for PDF output out of 10000 (max. 10000000)
 
