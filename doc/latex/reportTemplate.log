@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.12.15)  8 DEC 2015 19:52
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.12.15)  9 DEC 2015 01:26
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -262,18 +262,18 @@ LaTeX Warning: Label `fig:case-39-power-losses' multiply defined.
 )
 \openout1 = `reportTemplate.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -348,12 +348,7 @@ File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 )) [1
 
 {/usr/local/texlive/2012/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Overfull \hbox (28.45274pt too wide) in paragraph at lines 50--56
-[]$[]$| 
- []
-
-
-Overfull \hbox (28.45274pt too wide) in paragraph at lines 57--62
+Overfull \hbox (28.45274pt too wide) in paragraph at lines 56--62
 []$[]$| 
  []
 
@@ -363,7 +358,12 @@ Overfull \hbox (28.45274pt too wide) in paragraph at lines 63--68
  []
 
 
-Overfull \hbox (31.23946pt too wide) in paragraph at lines 45--69
+Overfull \hbox (28.45274pt too wide) in paragraph at lines 69--74
+[]$[]$| 
+ []
+
+
+Overfull \hbox (31.23946pt too wide) in paragraph at lines 51--75
  [] 
  []
 
@@ -372,90 +372,81 @@ Overfull \hbox (31.23946pt too wide) in paragraph at lines 45--69
 \openout3 = `reportTemplate.toc'.
 
  [3] [4]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 120.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 126.
 
 
 (/usr/local/texlive/2012/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 120.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 126.
  [5] [6]
 <images/wattsa.jpg, id=28, 562.1pt x 421.575pt>
 File: images/wattsa.jpg Graphic file (type jpg)
  <use images/wattsa.jpg>
-Package pdftex.def Info: images/wattsa.jpg used on input line 139.
+Package pdftex.def Info: images/wattsa.jpg used on input line 145.
 (pdftex.def)             Requested size: 210.70462pt x 158.0259pt.
 
 <images/wattsb.jpg, id=29, 562.1pt x 421.575pt>
 File: images/wattsb.jpg Graphic file (type jpg)
  <use images/wattsb.jpg>
-Package pdftex.def Info: images/wattsb.jpg used on input line 140.
+Package pdftex.def Info: images/wattsb.jpg used on input line 146.
 (pdftex.def)             Requested size: 210.70462pt x 158.0259pt.
 
 <images/wattsc.jpg, id=30, 562.1pt x 421.575pt>
 File: images/wattsc.jpg Graphic file (type jpg)
  <use images/wattsc.jpg>
-Package pdftex.def Info: images/wattsc.jpg used on input line 141.
+Package pdftex.def Info: images/wattsc.jpg used on input line 147.
 (pdftex.def)             Requested size: 210.70462pt x 158.0259pt.
 
 <images/wattsd.jpg, id=31, 562.1pt x 421.575pt>
 File: images/wattsd.jpg Graphic file (type jpg)
  <use images/wattsd.jpg>
-Package pdftex.def Info: images/wattsd.jpg used on input line 142.
+Package pdftex.def Info: images/wattsd.jpg used on input line 148.
 (pdftex.def)             Requested size: 210.70462pt x 158.0259pt.
 
 [7] [8 <./images/wattsa.jpg> <./images/wattsb.jpg> <./images/wattsc.jpg> <./ima
-ges/wattsd.jpg>]
-<images/node_degree_distribution_20.jpg, id=42, 562.1pt x 421.575pt>
-File: images/node_degree_distribution_20.jpg Graphic file (type jpg)
-
-<use images/node_degree_distribution_20.jpg>
-Package pdftex.def Info: images/node_degree_distribution_20.jpg used on input l
-ine 149.
-(pdftex.def)             Requested size: 296.70424pt x 222.52666pt.
- [9
-
- <./images/node_degree_distribution_20.jpg>] <images/avgbetaa.jpg, id=48, 562.1
-pt x 421.575pt>
+ges/wattsd.jpg>] <images/avgbetaa.jpg, id=42, 562.1pt x 421.575pt>
 File: images/avgbetaa.jpg Graphic file (type jpg)
 
 <use images/avgbetaa.jpg>
-Package pdftex.def Info: images/avgbetaa.jpg used on input line 159.
+Package pdftex.def Info: images/avgbetaa.jpg used on input line 156.
 (pdftex.def)             Requested size: 210.70462pt x 158.0259pt.
- <images/avgbetab.jpg, id=49, 562.1pt x 421.575pt>
+ <images/avgbetab.jpg, id=44, 562.1pt x 421.575pt>
 File: images/avgbetab.jpg Graphic file (type jpg)
 
 <use images/avgbetab.jpg>
-Package pdftex.def Info: images/avgbetab.jpg used on input line 160.
+Package pdftex.def Info: images/avgbetab.jpg used on input line 157.
 (pdftex.def)             Requested size: 210.70462pt x 158.0259pt.
- <images/avgbetac.jpg, id=50, 562.1pt x 421.575pt>
+ <images/avgbetac.jpg, id=45, 562.1pt x 421.575pt>
 File: images/avgbetac.jpg Graphic file (type jpg)
 
 <use images/avgbetac.jpg>
-Package pdftex.def Info: images/avgbetac.jpg used on input line 161.
+Package pdftex.def Info: images/avgbetac.jpg used on input line 158.
 (pdftex.def)             Requested size: 210.70462pt x 158.0259pt.
- <images/avgbetad.jpg, id=51, 562.1pt x 421.575pt>
+ <images/avgbetad.jpg, id=46, 562.1pt x 421.575pt>
 File: images/avgbetad.jpg Graphic file (type jpg)
 
 <use images/avgbetad.jpg>
-Package pdftex.def Info: images/avgbetad.jpg used on input line 162.
+Package pdftex.def Info: images/avgbetad.jpg used on input line 159.
 (pdftex.def)             Requested size: 210.70462pt x 158.0259pt.
- <images/periter.jpg, id=52, 562.1pt x 421.575pt>
+ <images/periter.jpg, id=47, 562.1pt x 421.575pt>
 File: images/periter.jpg Graphic file (type jpg)
 
 <use images/periter.jpg>
-Package pdftex.def Info: images/periter.jpg used on input line 168.
-(pdftex.def)             Requested size: 258.00539pt x 193.50229pt.
- [10 <./images/avgbetaa.jpg> <./images/avgbetab.jpg> <./images/avgbetac.jpg> <.
-/images/avgbetad.jpg>] [11 <./images/periter.jpg>]
-[12
+Package pdftex.def Info: images/periter.jpg used on input line 167.
+(pdftex.def)             Requested size: 301.00192pt x 225.74945pt.
+ [9
+
+ <./images/avgbetaa.jpg> <./images/avgbetab.jpg> <./images/avgbetac.jpg> <./ima
+ges/avgbetad.jpg>] [10 <./images/periter.jpg>]
+[11
 
 ]
 Missing character: There is no â in font cmr12!
 Missing character: There is no € in font cmr12!
 Missing character: There is no “ in font cmr12!
- [13] (./reportTemplate.aux)
+ [12] (./reportTemplate.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
@@ -465,13 +456,13 @@ LaTeX Warning: There were multiply-defined labels.
 ### semi simple group (level 1) entered at line 1 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 4199 strings out of 493488
- 62270 string characters out of 3141325
- 126419 words of memory out of 3000000
- 7427 multiletter control sequences out of 15000+200000
+ 4194 strings out of 493488
+ 62068 string characters out of 3141325
+ 125418 words of memory out of 3000000
+ 7423 multiletter control sequences out of 15000+200000
  15250 words of font info for 59 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
- 44i,10n,42p,1077b,378s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 44i,10n,42p,1114b,378s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts
 /cm/cmbx12.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmmi10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/c
@@ -483,10 +474,10 @@ mmi9.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
 fb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb>
 </usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><
 /usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on reportTemplate.pdf (13 pages, 412314 bytes).
+Output written on reportTemplate.pdf (12 pages, 373218 bytes).
 PDF statistics:
- 107 PDF objects out of 1000 (max. 8388607)
- 65 compressed objects within 1 object stream
+ 101 PDF objects out of 1000 (max. 8388607)
+ 62 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 51 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 46 words of extra memory for PDF output out of 10000 (max. 10000000)
 
