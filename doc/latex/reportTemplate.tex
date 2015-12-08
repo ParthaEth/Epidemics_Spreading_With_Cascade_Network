@@ -1,8 +1,9 @@
 \documentclass[11pt]{article}
 \usepackage{geometry}                
 \geometry{letterpaper}                   
-
 \usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{subfig}
 \usepackage{amssymb}
 \usepackage{epstopdf}
 %\usepackage{natbib}
@@ -127,10 +128,45 @@ With such differential equation, disease spreading in a social network (like cit
 
 \section{Implementation}
 
+\newpage
 \section{Simulation Results and Discussion}
+This paper gives a tool to quantify robustness of topologically different network against single random attack. The network is called N-1 robust if the damage it incurs is not significant under single node failure (infected). Our goal is to present a robustness metric tool to study whether or not a network is robust under arbitrary single node failure. To achieve this, a series of simulation experiments were performed using the disease spreading equation (X) under single node failures one-by-one for each of the network. In other words, the health of each node in network is recorded, and finally averaged for each iteration for each node-failure scenario. 
+
+Figure 1 shows the different type of network studied in this paper. Small world network was studied for different distribution of node-degrees. These network was computer generated using Watts-Strogatz algorithm. Figure 2 shows the degree distribution for these networks. As the probability of edge rewiring among the nodes is increased, the network signifies random network, with non-uniform degree distribution. For $\beta=0$, the network is a ring lattice, with very small shortest path between any two nodes, and it represents the ideal small world. For larger $\beta$, the shortest path between any two nodes increases. Figure 3 shows the simulation result for these networks under the model in equation (X). As $\beta$ increases, the damage the network incurs decreases on average. This is particularly visible during the first iteration where the damage the network with smallest $\beta$ experiences is significantly higher than those with larger $\beta$. As can be observed, the evolution of average health reaches equilibrium after 16 iterations. 
+
+\begin{figure}[!htb]
+\centering
+\subfigure[$\beta$=0]{\includegraphics[width=0.49\columnwidth]{images/wattsa.jpg}}
+\subfigure[$\beta$=0.15]{\includegraphics[width=0.49\columnwidth]{images/wattsb.jpg}}
+\subfigure[$\beta$=0.5]{\includegraphics[width=0.49\columnwidth]{images/wattsc.jpg}}
+\subfigure[$\beta$=1]{\includegraphics[width=0.49\columnwidth]{images/wattsd.jpg}}
+\caption{Small world network constructed using Watts-Strogatz algorithm. The network size (N) and average node-degree (d) was fixed with N=20, and d=2, while the probability of rewiring ($\beta$) was gradually increased, making the network more and more random.}\label{fig:case-39-power-losses}
+\end{figure}
+\clearpage
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=0.69\columnwidth]{images/node_degree_distribution_20.jpg}
+\caption{Node degree distribution for networks under investigation}
+\end{figure}
+
+Figure 4 shows the robustness metric under N-1 attach scenario for each of these networks. Each of this scatter point quantifies the robustness of the corresponding network; the smaller the average proportion infected per iteration the more robust is the network. The trend in the plot is quite clear. For smaller $\beta$, the less robust the network. 
+
+\newpage
+
+\begin{figure}[!htb]
+\centering
+\subfigure[beta0]{\includegraphics[width=0.49\columnwidth]{images/avgbetaa.jpg}}
+\subfigure[beta0.15]{\includegraphics[width=0.49\columnwidth]{images/avgbetab.jpg}}
+\subfigure[beta0.5]{\includegraphics[width=0.49\columnwidth]{images/avgbetac.jpg}}
+\subfigure[beta1]{\includegraphics[width=0.49\columnwidth]{images/avgbetad.jpg}}
+\caption{Power losses for case-39 with DC and AC power flow.}\label{fig:case-39-power-losses}
+\end{figure}
+
 
 \section{Summary and Outlook}
 
+\newpage
 \begin{thebibliography}{9}
 \bibitem{shirley} Shirley, Mark D.F. and Rushton, Steve P. \textit{ The impacts of network topology on disease spread }, Ecological Complexity, 2005.
 
