@@ -6,6 +6,7 @@
 \usepackage{subfig}
 \usepackage{amssymb}
 \usepackage{epstopdf}
+\usepackage{abstract}
 %\usepackage{natbib}
 \usepackage{amssymb, amsmath}
 %\usepackage{cite}
@@ -41,16 +42,17 @@
 
 \bigskip
 
+\bigskip
 
 \begin{tabular}{@{}p{1cm}@{}p{5cm}@{}@{}p{5cm}@{}@{}p{5cm}}
-\begin{minipage}{3cm}
+\begin{minipage}{0cm}
 
 \end{minipage}
 &
 \begin{minipage}{6cm}
-\vspace{2mm} \large Acharya, Dinesh
+\large Acharya, Dinesh
 
- \vspace{\baselineskip}
+ %\vspace{\baselineskip}
 
 \end{minipage}
 &
@@ -87,13 +89,15 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Abstract}
-Cascading failures 
+\begin{abstract}
+		We study the characteristics of networks under directed and random attacks by performing many simulation experiments. This study will help better understand possible failure scenarios, tolerance level for a particular network and can help plan resource allocation during design and emergency response period. Models like SIR have been used in the past to simulate disease spread characteristics. We use a slightly more general model [WHAT MODEL ARE WE USING MANISH?] to better capture involved dynamics such as link delay, explain away effects, self healing, graceful failure and disturbance propagation. Although we believe the full potential of our model can be achieved only when we replicate a real world network, network of cities in a region for example, collect measured data and let our model train on that data so it can st the hyper parameters by itself with the help of machine learning, due to time constraints this par could not be implemented and tested.
+\end{abstract}
+\clearpage
 
 \section{Individual contributions}
 
 \section{Introduction and Motivations}
-
+   We live in a connected world. Our cities with their trade and travel routs form a complicated web. Social networks on the other hand forms subtler but more intricate web of links. Naturally information, goods and services reach the end user by taking several hops and through several channels. Until recently we did not take a critical look at bearing capacity, routing and robustness of the established systems. Research also reveals that the network that has been created based mainly on supply-demand dynamics is not optimal in many aspects. One serious concern about any networked system is its robustness against random node failure. In a real life setting it could mean breakout of infectious disease or flow of information in a social networks. As can be imagined it is just matter of time before an otherwise benign abnormality lead to disastrous conditions, because of simple structural imperfections in a network, it is important to study structural robustness of different kinds of network. In our study we examine how different networked system behave when nodes in then fail to respond properly. The real life analogy would be spread of disease from one city to another starting from one or more cities. We explore what kind of connection structure stand better chance in avoiding total failure.
 \subsection{Literature Review}
 Most of the disease models categorise the given population into different categories and model the evolution of number of population in each of those categories with a set of differential equations. The popular susceptible infectious recovered (SIR) model is modelled by following set of differential equations:
 \[ \frac{dS}{dt} = bN - \lambda S - dS,  \]
