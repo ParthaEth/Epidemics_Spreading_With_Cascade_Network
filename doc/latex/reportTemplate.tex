@@ -9,6 +9,8 @@
 \usepackage{abstract}
 %\usepackage{natbib}
 \usepackage{amssymb, amsmath}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
 %\usepackage{cite}
 
 %
@@ -150,7 +152,25 @@ Now in some use-cases the scaling parameter $\beta_{ij}$ might not be a useful. 
 \section{Implementation}
 Now with the mathematical formulation in place let us focus on implementation details that may prove rather important factor in the performance of the overall system. As can be seen the above equation has two parts, the self healing part and the incoming disturbance part. In order to ensure generality and yet maintain compactness of the code we need to take a modular approach. Although usage of classes are discouraged in Matlab, due to degraded execution speed, since our goal was to maintain re-usability of code we decided to use an object oriented programming style. To simulate any network we create two main objects, nodes and network. A node in our implementation is a class which holds all the parameter and functionality local to the node. So it holds the parameter $\alpha$ denoting its sensitivity to incoming disturbance, the parameter $\tau$ denoting its recovery rate. The parameters $a$ and $b$ denotes its capacity to spread disturbance to nodes connected to it should also be stored in per-node basis but in most of our applications used constant values we decided to keep them as global parameters that apply to all nodes. Most used methods in the node class are named as $runNode$ and $Sigmoid$. As the names suggest the first one calculates the change of health of the node in current time step. Since the second part in the RHS of Eq.\ref{MAIN_MODEL} can not be calculated without the knowledge about the connectivity matrix and time delay matrix the part inside the sigmoid function $\Theta$, is passed to tihs function from the $NetworkBase$ class in a variable named $effectFromNeighbours$. The network base class is responsible for keeping track of the structure of the network being simulated and it does so by keeping a list of all the nodes and a connectivity matrix and a time delay matrix on the node indices. This class provides a few convenience functions to create a connectivity matrices on the fly for quick tryouts and debugging. The main methods are $addNode$, $delete$, and $simulateNetwork$. Add and delete node helps create the network by adding nodes to the network. Connections are not established at this point, but should be done separately through the method $connectAstoBs$. Finally the $simulateNetwork$ method simulates the whole network for one discrete time step. It updates the health of all the nodes present at the point of time this method is called. To simulate the network for several time steps this method must be called in a loop. The main work flow of the program can be seen in the following pseudocode.
 
-\#I'LL PUT THE PSEUDOCODE HERE BY TONIGHT!\#
+\begin{algorithm}
+\caption{Main work-flow of disturbance propagation}\label{MAIN_PSEUDO_CODE}
+\begin{algorithmic}[1]
+\Procedure{MAIN}{}
+	\Procedure{SetupConfigurationParams}{}
+			\State \texttt{Set MaxSimulationTime, TimeStep, StoppingCriterion}
+			\State \texttt{Load/Generate edge strength matrix}
+			\State \texttt{Load/Generate time delay matrix}
+			\State \texttt{Create a new network, add nodes and connect them}
+	\EndProcedure
+	\Procedure{RunMainSimulation}{}
+		\While {\texttt{NOT(StoppingCriterion) \&\& \! NOT(maxSimulationTimeReached)}}
+			\State \texttt{net = net.simulateNetwork(timeStep);}
+			\State \texttt{Log health of interesting nodes or any other parameter}
+		\EndWhile
+	\EndProcedure
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 
 \newpage
 \section{Simulation Results and Discussion}
