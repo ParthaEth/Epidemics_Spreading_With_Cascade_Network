@@ -140,7 +140,7 @@ In this section we shall summarize the model to simulate disturbance in an undir
 \theta(y) = \frac{1-exp(-\alpha y)}{1+exp[-\alpha(y-\theta_i)]} 
 \label{SIGMOID}
 \end{equation}
- Where $\alpha$ specifies the stiffness parameter. This parameter can be set differently in our implementation letting the user the flexibility of modeling varying sensitivity of nodes. The model takes a connectivity matrix $M_{ij}$. This matrix specifies the strength of influence of one node on the other. In our case this matrix is a symmetric matrix and the elements in the main diagonal do not have any meaning. Any non zero entry in this matrix signifies a connection between two nodes and any negative value in this matrix signifies inverse relationship between connected nodes. Although inverse relationship is rare in real world disease spreading it is perfectly possible in case of information spreading hence the generality is required at this point. The model also takes a time delay matrix $T_{ij}$. This matrix models the amount of time required for the disturbance to flow from one node to the neighboring connected node. Entries in this matrix can only be non-negative if the corresponding entry in the connectivity matrix $M_{ij}$ is also non zero. A negative entry in this matrix is not allowed as that would render the whole system non causal and hence can not be simulated except in the steady state. The model calculates $f(O_j) = \frac{aO_j}{1+bO_j}$. It captures the explain away effect of a cause. In some use-cases it is not justified to use this feature, e.g. in case of disease spread simulation. In such cases the user can set $a=b=\infty$. Finally the disturbance while the get transmitted to the receiving node from the transmitting node can gain or lose strength. To capture this dynamics the model takes another parameter $\beta_ij$, which scales the transmitted effect via an exponential function. With all these parameters in place we can write the model as in Eq.\ref{MAIN_MODEL}
+ Where $\alpha$ specifies the stiffness parameter. This parameter can be set differently in our implementation letting the user the flexibility of modeling varying sensitivity of nodes. The model takes a connectivity matrix $M_{ij}$. This matrix specifies the strength of influence of one node on the other. In our case this matrix is a symmetric matrix and the elements in the main diagonal do not have any meaning. Any non zero entry in this matrix signifies a connection between two nodes and any negative value in this matrix signifies inverse relationship between connected nodes. Although inverse relationship is rare in real world disease spreading it is perfectly possible in case of information spreading hence the generality is required at this point. The model also takes a time delay matrix $T_{ij}$. This matrix models the amount of time required for the disturbance to flow from one node to the neighboring connected node. Entries in this matrix can only be non-negative if the corresponding entry in the connectivity matrix $M_{ij}$ is also non zero. A negative entry in this matrix is not allowed as that would render the whole system non causal and hence can not be simulated except in the steady state. The model calculates $f(O_j) = \frac{aO_j}{1+bO_j}$. It captures the explain away effect of a cause. In some use-cases it is not justified to use this feature, e.g. in case of disease spread simulation. In such cases the user can set $a=b\rightarrow\infty$. Finally the disturbance while the get transmitted to the receiving node from the transmitting node can gain or lose strength. To capture this dynamics the model takes another parameter $\beta_ij$, which scales the transmitted effect via an exponential function. With all these parameters in place we can write the model as in Eq.\ref{MAIN_MODEL}
 
 \begin{equation}
 \frac{dx_i}{dt} = -\frac{x_i}{\tau_i}+\Theta\left(\sum_{i\ne j}{\frac{M_{ij}x_j(t-t_{ij})}{f(O_j)}e^{-\beta_{ji}}}\right) 
@@ -148,6 +148,9 @@ In this section we shall summarize the model to simulate disturbance in an undir
 \end{equation}
 Now in some use-cases the scaling parameter $\beta_{ij}$ might not be a useful. One can easily set it to $0$ in such cases.
 \section{Implementation}
+Now with the mathematical formulation in place let us focus on implementation details that may prove rather important factor in the performance of the overall system. As can be seen the above equation has two parts, the self healing part and the incoming disturbance part. In order to ensure generality and yet maintain compactness of the code we need to take a modular approach. Although usage of classes are discouraged in Matlab, due to degraded execution speed, since our goal was to maintain re-usability of code we decided to use an object oriented programming style. To simulate any network we create two main objects, nodes and network. A node in our implementation is a class which holds all the parameter and functionality local to the node. So it holds the parameter $\alpha$ denoting its sensitivity to incoming disturbance, the parameter $\tau$ denoting its recovery rate. The parameters $a$ and $b$ denotes its capacity to spread disturbance to nodes connected to it should also be stored in per-node basis but in most of our applications used constant values we decided to keep them as global parameters that apply to all nodes. Most used methods in the node class are named as $runNode$ and $Sigmoid$. As the names suggest the first one calculates the change of health of the node in current time step. Since the second part in the RHS of Eq.\ref{MAIN_MODEL} can not be calculated without the knowledge about the connectivity matrix and time delay matrix the part inside the sigmoid function $\Theta$, is passed to tihs function from the $NetworkBase$ class in a variable named $effectFromNeighbours$. The network base class is responsible for keeping track of the structure of the network being simulated and it does so by keeping a list of all the nodes and a connectivity matrix and a time delay matrix on the node indices. This class provides a few convenience functions to create a connectivity matrices on the fly for quick tryouts and debugging. The main methods are $addNode$, $delete$, and $simulateNetwork$. Add and delete node helps create the network by adding nodes to the network. Connections are not established at this point, but should be done separately through the method $connectAstoBs$. Finally the $simulateNetwork$ method simulates the whole network for one discrete time step. It updates the health of all the nodes present at the point of time this method is called. To simulate the network for several time steps this method must be called in a loop. The main work flow of the program can be seen in the following pseudocode.
+
+\#I'LL PUT THE PSEUDOCODE HERE BY TONIGHT!\#
 
 \newpage
 \section{Simulation Results and Discussion}
@@ -157,10 +160,10 @@ Figure 1 shows the different type of networks studied in this paper. Small world
 
 \begin{figure}[!htb]
 \centering
-\subfigure[$\beta$=0]{\includegraphics[width=0.49\columnwidth]{images/wattsona.jpg}}
-\subfigure[$\beta$=0.15]{\includegraphics[width=0.49\columnwidth]{images/wattsonb.jpg}}
-\subfigure[$\beta$=0.5]{\includegraphics[width=0.49\columnwidth]{images/wattsonc.jpg}}
-\subfigure[$\beta$=1]{\includegraphics[width=0.49\columnwidth]{images/wattsond.jpg}}
+\subfigure[$\beta$=0]{\includegraphics[width=0.49\columnwidth]{images/wattsa.jpg}}
+\subfigure[$\beta$=0.15]{\includegraphics[width=0.49\columnwidth]{images/wattsb.jpg}}
+\subfigure[$\beta$=0.5]{\includegraphics[width=0.49\columnwidth]{images/wattsc.jpg}}
+\subfigure[$\beta$=1]{\includegraphics[width=0.49\columnwidth]{images/wattsd.jpg}}
 \caption{Small world network constructed using Watts-Strogatz algorithm. The network size (N) and average node-degree (d) was fixed with N=20, and d=2, while the probability of rewiring ($\beta$) was gradually increased, making the network more and more random.}\label{fig:case-39-power-losses}
 \end{figure}
 \clearpage
@@ -168,10 +171,10 @@ Figure 1 shows the different type of networks studied in this paper. Small world
 
 \begin{figure}[!htb]
 \centering
-\subfigure[$\beta$=0]{\includegraphics[width=0.49\columnwidth]{images/newbetaa.jpg}}
-\subfigure[$\beta$=0.15]{\includegraphics[width=0.49\columnwidth]{images/newbetab.jpg}}
-\subfigure[$\beta$=0.5]{\includegraphics[width=0.49\columnwidth]{images/newbetac.jpg}}
-\subfigure[$\beta$=1]{\includegraphics[width=0.49\columnwidth]{images/newbetad.jpg}}
+\subfigure[$\beta$=0]{\includegraphics[width=0.49\columnwidth]{images/avgbetaa.jpg}}
+\subfigure[$\beta$=0.15]{\includegraphics[width=0.49\columnwidth]{images/avgbetab.jpg}}
+\subfigure[$\beta$=0.5]{\includegraphics[width=0.49\columnwidth]{images/avgbetac.jpg}}
+\subfigure[$\beta$=1]{\includegraphics[width=0.49\columnwidth]{images/avgbetad.jpg}}
 \caption{Evolution of disease spread in each iteration step for different networks..}\label{fig:case-39-power-losses}
 \end{figure}
 
@@ -179,7 +182,7 @@ Figure 4 shows the robustness metric under N-1 attach scenario for each of these
 
 \begin{figure}[t!]
 \centering
-\includegraphics[width=0.70\columnwidth]{images/periteration.jpg}
+\includegraphics[width=0.70\columnwidth]{images/periter.jpg}
 \caption{Robustness metric for different $\beta$}
 \end{figure}
 \clearpage
