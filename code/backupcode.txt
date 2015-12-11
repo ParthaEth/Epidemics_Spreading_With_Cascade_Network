@@ -1,0 +1,34 @@
+%% This file contains codes that are not part of current algorithm, but were used
+%% for tests or other purposes.
+
+%% from main.m that was used for unit testing
+timeStep = 0.1;
+maxConnectionDelay = 3; %in unit of timeSteps
+net = NetworkBase;
+node = Node(maxConnectionDelay, 0.1, 0.025, 0.5, 4);
+%node = node.setPos(0,0);
+net = net.addNode(node);
+node = Node(maxConnectionDelay, 0.1, 0.025, 0.5, 4);
+%node = node.setPos(1,1);
+net = net.addNode(node);
+net = net.connectAstoBs(1,2,.5, .1);
+net = net.connectAstoBs(2,1,.5, .1);
+net.list_nodes{1} = net.list_nodes{1}.setCurrentHealth(0.6);
+net.list_nodes{2} = net.list_nodes{2}.setCurrentHealth(0.6);
+net = net.simulateNetwork(timeStep);
+net.list_nodes{1}.health_
+net.list_nodes{2}.health_
+net = net.simulateNetwork(timeStep);
+net.list_nodes{1}.health_
+net.list_nodes{2}.health_
+net = net.simulateNetwork(timeStep);
+net.list_nodes{1}.health_
+net.list_nodes{2}.health_
+net = net.simulateNetwork(timeStep);
+net.list_nodes{1}.health_
+net.list_nodes{2}.health_
+net = net.simulateNetwork(timeStep);
+net.list_nodes{1}.health_
+net.list_nodes{2}.health_
+% plotNet(net)
+
