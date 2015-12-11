@@ -1,8 +1,0 @@
-\contentsline {section}{\numberline {1}Individual contributions}{5}
-\contentsline {section}{\numberline {2}Introduction and Motivations}{5}
-\contentsline {subsection}{\numberline {2.1}Literature Review}{5}
-\contentsline {subsection}{\numberline {2.2}Research Problem}{6}
-\contentsline {section}{\numberline {3}Description of the Model}{7}
-\contentsline {section}{\numberline {4}Implementation}{7}
-\contentsline {section}{\numberline {5}Simulation Results and Discussion}{8}
-\contentsline {section}{\numberline {6}Summary and Outlook}{12}
