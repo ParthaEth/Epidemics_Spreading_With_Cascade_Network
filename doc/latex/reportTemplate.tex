@@ -1,18 +1,15 @@
 \documentclass[11pt]{article}
-\usepackage{geometry}                
-\geometry{letterpaper}                   
-\usepackage{graphicx}
-\usepackage{subfigure}
-\usepackage{subfig}
-\usepackage{amssymb}
-\usepackage{epstopdf}
-\usepackage{abstract}
-\usepackage{hyperref}
-%\usepackage{natbib}
-\usepackage{amssymb, amsmath}
-\usepackage{algorithm}
-\usepackage[noend]{algpseudocode}
-%\usepackage{cite}
+ \usepackage{geometry}                
+ \geometry{letterpaper}                   
+ \usepackage{graphicx}
+ \usepackage{subfigure}
+ \usepackage{amssymb}
+ \usepackage{epstopdf}
+ \usepackage{abstract}
+ \usepackage[hypertexnames=true]{hyperref}
+ \usepackage{amssymb, amsmath}
+ \usepackage{algorithm}
+ \usepackage[noend]{algpseudocode}
 \usepackage{pdfpages}
 %
 \makeatletter
@@ -112,20 +109,26 @@ Partha and Dinesh were responsible for coding the disaster-spreading differentia
 We live in a connected world. Our cities with their trade and travel routes form a complicated web. Social networks on the other hand form subtler but more intricate web of links. Naturally information, goods and services reach the end user by taking several hops and through several channels. Until recently we did not take a critical look at bearing capacity, routing and robustness of the established systems. Research also reveals that the network that has been created based mainly on supply-demand dynamics is not optimal in many aspects. One serious concern about any networked system is its robustness against random node failure. In a real life setting it could mean breakout of infectious disease or flow of information in a social network. As can be imagined it is just matter of time before an otherwise benign abnormality leads to disastrous conditions, because of simple structural imperfections in a network, it is important to study structural robustness of different kinds of network. In our study we examine how different networked systems behave when nodes in them fail to respond properly. The real life analogy would be spread of disease from one city to another starting from one or more cities. We explore what kind of connection structure stand better chance in avoiding total failure.
 \subsection{Literature Review}
 Most of the disease models categorise the given population into different categories and model the evolution of number of population in each of those categories with a set of differential equations. The popular susceptible-infectious-recovered model (SIR) is modelled by following set of differential equations:
-\begin{equation}
-\begin{align*}
-\frac{dS}{dt} &= bN - \lambda S - dS,\\
-\frac{dI}{dt} &= \lambda S - gI - dI,\\
-\frac{dR}{dt} &= gI - dR.
-\end{align*}
-\end{equation}
+\begin{subequations}
+	\begin{equation}
+		\frac{dS}{dt} = bN - \lambda S - dS
+	\end{equation}
+	\begin{equation}
+		\frac{dI}{dt} = \lambda S - gI - dI
+	\end{equation}
+	\begin{equation}
+		\frac{dR}{dt} = gI - dR.
+	\end{equation}
+\end{subequations}
 where $N = S + R + I$ is the total population size, $\lambda$ is the rate at which infectious individuals become infected, $g$ is the rate of recovery from infection, $d$ is the natural death rate and $b$ is the birth rate. The SIR models the diseases where there is no chance of infection once infected such as in the case of measles. Another popular model is susceptible-infectious-susceptible $SIS$ model which is given by following set of differential equations:
-\begin{equation}
-\begin{align*}
-\frac{dS}{dt} = gI - \lambda S,
-\frac{dI}{dt} = \lambda S - gI.
-\end{align*}
-\end{equation}
+\begin{subequations}
+	\begin{equation}
+		\frac{dS}{dt} = gI - \lambda S
+	\end{equation}
+	\begin{equation}
+		\frac{dI}{dt} = \lambda S - gI
+	\end{equation}
+\end{subequations}
 SIR model is used to model diseases where there are high chances of repeated infections such as in the case of STDs like Chlamydia.\\
 \\
 These standard models do not take into account the fact that pattern of interactions at individual level also play significant role in spread of disease. Standard Network Theoretic modelling of disease spread takes into account this factor by considering the network of individuals. Each individual is considered as a node and the possible interactions or contact between individuals is considered as a edge on the graph. The adjacency matrix $A$ is constructed such that $A_{ij} = 1$ if the disease can transfer from individual $i$ to individual $j$ and $0$ otherwise. The properties of the adjacency matrix can be studied to deduce about the structure of the network. To simulate disease spread in the network, different techniques has been used. One such model uses a simple equation
@@ -138,15 +141,15 @@ In this paper, we use a different differential equation to simulate the spread o
 \\
 With such dynamics, disease spreading in a social network (like cities or countries) will be investigated.  Our analysis is based on N-1 node-failure analysis. Meaning, it will be investigated whether or not the system is robust under single node failure; here failure implies node being infected by a disease. This in turn is determined if the overall health of a node crosses a certain threshold. We have set this threshold as $0.5$ for the the simulation experiments. The goal of the project is to run $N-1$ contingency analysis with each of the nodes of the network attacked, for various kinds of artificial computer-generated small-world networks, with varying node-degrees among nodes.\\
 \\
-The number of nodes that fail, under the attack of initial node, will be registered. The same will be done for all the nodes in the network. The result will be averaged out and normalized with the system size and threshold parameter $\theta$ of the network. This normalization renders the health threshold $\theta$ a dimension less parameter and eases way of comparison between networks simulated with different thresholds. However as mentioned earlier we keep this parameter constant throughout our set of simulation experiments. Our simulations were done with artificial networks, and the result have been compared to see the robustness of these networks under N-1 attack model. As mentioned earlier, the aim of this project is to construct a weighted robustness metric for social networks, which can be used not-only in cascading disease spread but across many disciplines like gas flow network, electricity grids, information flow in social networks, etc. given the dynamics represented by the differential equation discussed in this paper is followed. In addition, the evolution of cascading failure will also be investigated in the project. In other words, number of nodes that fail in each iteration also will be recorded, and the evolution of failing nodes displayed for each iteration. Hence this project can be regarded as an effort to build a simulation environment that is based on a generic yet very powerful model to capture subtlety in behaviour of the real system.
+The number of nodes that fail, under the attack of initial node, will be registered. The same will be done for all the nodes in the network. The result will be averaged out and normalized with the system size and threshold parameter $\theta$ of the network. This normalization renders the health threshold $\theta$ a dimension less parameter and eases way of comparison between networks simulated with different thresholds. However as mentioned earlier we keep this parameter constant throughout our set of simulation experiments. Our simulations were done with artificial networks, and the result have been compared to see the robustness of these networks under N-1 attack model. As mentioned earlier, the aim of this project is to construct a weighted robustness metric for social networks, which can be used not-only in cascading disease spread but across many disciplines like gas flow network, electricity grids, information flow in social networks, etc. given the dynamics represented by the differential equation discussed in this paper is followed. In addition, the evolution of cascading failure will also be investigated in the project. In other words, number of nodes that fail in each iteration also will be recorded, and the evolution of failing nodes displayed for each iteration. Hence this project can be regarded as an effort to build a simulation environment that is based on a generic yet very powerful model to capture subtlety in behavior of the real system.
 
 \section{Description of the Model}
-In this section we shall summarize the model to simulate disturbance in an undirected (bidirectional) graph. It is worth noting at this point that the model simulates flow of disturbance in a graph that has certain characteristics described in the rest of the paragraph, and hence is completely independent of the physical phenomenon being modelled in a particular use-case. In general, the properties assumed here is inspired by flow of faulty electric grid node but as will be apparent from the following discussion in absence of any domain specific information it is reasonable to assume such behaviour. Further more the model provides suitable control parameters to reduce or even remove effect of individual features of the model. This improves the usability of the model further. The model works on a graph $G = (N, S)$, where $N$ represents the set of nodes and $S$ represents the set of edges. Now the edges in general can be considered as directed but since it is uncommon to have disturbance flowing in one direction in the systems we consider for the current work we consider edges that go in both directions. Each real system exhibits a natural resistance to challenges to certain extent, which has been captured in the model by a special threshold $\theta > 0$ and a node is considered infected (disturbed) when net accumulated disturbance in a node exceeds this threshold. Since disturbance coming into a node can sum up to arbitrary values we apply a sigmoid function as in Eq.\ref{SIGMOID}
+In this section we shall summarize the model to simulate disturbance in an undirected (bidirectional) graph. It is worth noting at this point that the model simulates flow of disturbance in a graph that has certain characteristics described in the rest of the paragraph, and hence is completely independent of the physical phenomenon being modeled in a particular use-case. In general, the properties assumed here is inspired by flow of faulty electric grid node but as will be apparent from the following discussion in absence of any domain specific information it is reasonable to assume such behavior. Further more the model provides suitable control parameters to reduce or even remove effect of individual features of the model. This improves the usability of the model further. The model works on a graph $G = (N, S)$, where $N$ represents the set of nodes and $S$ represents the set of edges. Now the edges in general can be considered as directed but since it is uncommon to have disturbance flowing in one direction in the systems we consider for the current work we consider edges that go in both directions. Each real system exhibits a natural resistance to challenges to certain extent, which has been captured in the model by a special threshold $\theta > 0$ and a node is considered infected (disturbed) when net accumulated disturbance in a node exceeds this threshold. Since disturbance coming into a node can sum up to arbitrary values we apply a sigmoid function as in Eq.\ref{SIGMOID}
 \begin{equation}
 \theta(y) = \frac{1-exp(-\alpha y)}{1+exp[-\alpha(y-\theta_i)]} 
 \label{SIGMOID}
 \end{equation}\\
-where $\alpha$ specifies the stiffness parameter. This parameter can be set differently in our implementation letting the user the flexibility of modelling varying sensitivity of nodes. The model takes a connectivity matrix $M_{ij}$. This matrix specifies the strength of influence of one node on the other. In our case this matrix is a symmetric matrix and the elements in the main diagonal do not have any meaning. Any non zero entry in this matrix signifies a connection between two nodes and any negative value in this matrix signifies inverse relationship between connected nodes. Although inverse relationship is rare in real world disease spreading it is perfectly possible in case of information spreading hence the generality is required at this point. The model also takes a time delay matrix $T_{ij}$. This matrix models the amount of time required for the disturbance to flow from one node to the neighbouring connected node. Entries in this matrix can only be non-negative if the corresponding entry in the connectivity matrix $M_{ij}$ is also non zero. A negative entry in this matrix is not allowed as that would render the whole system non causal and hence can not be simulated except in the steady state. The model calculates $f(O_j) = \frac{aO_j}{1+bO_j}$. It captures the explain away effect of a cause. In some use-cases it is not justified to use this feature, e.g. in case of disease spread simulation. In such cases the user can set $a=b\rightarrow\infty$. Finally the disturbance while they get transmitted to the receiving node from the transmitting node can gain or lose strength. To capture this dynamics the model takes another parameter $\beta_{ij}$, which scales the transmitted effect via an exponential function. With all these parameters in place we can write the model as in Eq.\ref{MAIN_MODEL}
+where $\alpha$ specifies the stiffness parameter. This parameter can be set differently in our implementation letting the user the flexibility of modelling varying sensitivity of nodes. The model takes a connectivity matrix $M_{ij}$. This matrix specifies the strength of influence of one node on the other. In our case this matrix is a symmetric matrix and the elements in the main diagonal do not have any meaning. Any non zero entry in this matrix signifies a connection between two nodes and any negative value in this matrix signifies inverse relationship between connected nodes. Although inverse relationship is rare in real world disease spreading it is perfectly possible in case of information spreading hence the generality is required at this point. The model also takes a time delay matrix $T_{ij}$. This matrix models the amount of time required for the disturbance to flow from one node to the neighboring connected node. Entries in this matrix can only be non-negative if the corresponding entry in the connectivity matrix $M_{ij}$ is also non zero. A negative entry in this matrix is not allowed as that would render the whole system non causal and hence can not be simulated except in the steady state. The model calculates $f(O_j) = \frac{aO_j}{1+bO_j}$. It captures the explain away effect of a cause. In some use-cases it is not justified to use this feature, e.g. in case of disease spread simulation. In such cases the user can set $a=b\rightarrow\infty$. Finally the disturbance while they get transmitted to the receiving node from the transmitting node can gain or lose strength. To capture this dynamics the model takes another parameter $\beta_{ij}$, which scales the transmitted effect via an exponential function. With all these parameters in place we can write the model as in Eq.\ref{MAIN_MODEL}
 
 \begin{equation}
 \frac{dx_i}{dt} = -\frac{x_i}{\tau_i}+\Theta\left(\sum_{i\ne j}{\frac{M_{ij}x_j(t-t_{ij})}{f(O_j)}e^{-\beta_{ji}}}\right) 
@@ -182,7 +185,7 @@ Most used methods in the node class are named as $runNode$ and $Sigmoid$. As the
 \section{Simulation Results and Discussion}
 The network is called N-1 robust if the damage it encounters is not significant under single node failure (or infection).  To see this, a series of simulation experiments were performed using the disaster-spreading equation (2) under single node failures. A node is initially infected, and the disease spreading observed. The network is than restored to its original state, and another node is infected and the disease spreading observed again. This is repeated for all the nodes of the network exhaustively. In the end, an array of health of nodes of the network is received for each iteration step for each of the single node failure scenario. Each of these array form an element of the ensemble for analysis of the final robustness metric of the network. \\
 \\
-Figure \ref{graphVis} shows the different types of networks studied in this paper. Small world network was studied for different distribution of node-degrees. These network were computer-generated using Watts-Strogatz algorithm. As the probability of edge rewiring among the nodes is increased, the network signifies more and more random network, with non-uniform degree distribution. For $\beta=0$, the network is a ring lattice, with very small shortest path between any two nodes, and it represents the ideal small world network. For larger $\beta$, the shortest path between any two nodes increases. Figure \ref{evolution} shows the simulation result for these networks under the model in equation (2). As $\beta$ increases, the damage the network encounters decreases on average. This is particularly visible during the first iteration where the damage the network with smallest $\beta$ experiences is significantly higher than those with larger $\beta$. As can be observed, the evolution of average health of nodes reaches equilibrium after 16 iterations for each of these networks. 
+Figure \ref{GRAPH_VISUALIZATION} shows the different types of networks studied in this paper. Small world network was studied for different distribution of node-degrees. These network were computer-generated using Watts-Strogatz algorithm. As the probability of edge rewiring among the nodes is increased, the network signifies more and more random network, with non-uniform degree distribution. For $\beta=0$, the network is a ring lattice, with very small shortest path between any two nodes, and it represents the ideal small world network. For larger $\beta$, the shortest path between any two nodes increases. Figure \ref{EVOLUTION} shows the simulation result for these networks under the model in equation (2). As $\beta$ increases, the damage the network encounters decreases on average. This is particularly visible during the first iteration where the damage the network with smallest $\beta$ experiences is significantly higher than those with larger $\beta$. As can be observed, the evolution of average health of nodes reaches equilibrium after 16 iterations for each of these networks. 
 
 \begin{figure}[!htb]
 \centering
@@ -190,8 +193,7 @@ Figure \ref{graphVis} shows the different types of networks studied in this pape
 \subfigure[$\beta$=0.15]{\includegraphics[width=0.49\columnwidth]{images/wattsonb.jpg}}
 \subfigure[$\beta$=0.5]{\includegraphics[width=0.49\columnwidth]{images/wattsonc.jpg}}
 \subfigure[$\beta$=1]{\includegraphics[width=0.49\columnwidth]{images/wattsond.jpg}}
-\label{graphVis}
-\caption{Small world network constructed using Watts-Strogatz algorithm. The network size (N) and average node-degree (d) was fixed with N=20, and d=2, while the probability of rewiring ($\beta$) was gradually increased, making the network more and more random.}\label{fig:case-39-power-losses}
+\caption{Small world network constructed using Watts-Strogatz algorithm. The network size (N) and average node-degree (d) was fixed with N=20, and d=2, while the probability of rewiring ($\beta$) was gradually increased, making the network more and more random.}\label{GRAPH_VISUALIZATION}
 \end{figure}
 \clearpage
 
@@ -201,16 +203,14 @@ Figure \ref{graphVis} shows the different types of networks studied in this pape
 \subfigure[$\beta$=0.15]{\includegraphics[width=0.49\columnwidth]{images/newbetab.jpg}}
 \subfigure[$\beta$=0.5]{\includegraphics[width=0.49\columnwidth]{images/newbetac.jpg}}
 \subfigure[$\beta$=1]{\includegraphics[width=0.49\columnwidth]{images/newbetad.jpg}}
-\label{evolution}
-\caption{Evolution of disease spread in each iteration step for different networks..}\label{fig:case-39-power-losses}
-\end{figure}\\
-Figure \ref{errorBar} shows the robustness metric under N-1 attack scenario for each of these networks. Each of this scatter point quantifies the robustness of the corresponding network; the smaller the average proportion infected per iteration the more robust is the network. The trend in the plot is quite clear. For smaller $\beta$, the network is less robust. 
+\caption{Evolution of disease spread in each iteration step for different networks.}\label{EVOLUTION}
+\end{figure}
+Figure \ref{ERROR_BAR} shows the robustness metric under N-1 attack scenario for each of these networks. Each of this scatter point quantifies the robustness of the corresponding network; the smaller the average proportion infected per iteration the more robust is the network. The trend in the plot is quite clear. For smaller $\beta$, the network is less robust. 
 
 \begin{figure}[t!]
 \centering
 \includegraphics[width=0.70\columnwidth]{images/periteration.jpg}
-\label{errorBar}
-\caption{Robustness metric for different $\beta$}
+\caption{Robustness metric for different $\beta$}\label{ERROR_BAR}
 \end{figure}
 \clearpage
 
