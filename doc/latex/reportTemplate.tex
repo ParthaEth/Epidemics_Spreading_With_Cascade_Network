@@ -13,7 +13,7 @@
 \usepackage{algorithm}
 \usepackage[noend]{algpseudocode}
 %\usepackage{cite}
-
+\usepackage{pdfpages}
 %
 \makeatletter
 \setlength{\@fptop}{0pt}
@@ -91,6 +91,8 @@
 
 %%%%%%%%%% Table of content %%%%%%%%%%%%%%%%%
 
+\includepdf[pages=-]{sign.pdf}
+
 \tableofcontents
 
 \newpage
@@ -110,12 +112,20 @@ Partha and Dinesh were responsible for coding the disaster-spreading differentia
 We live in a connected world. Our cities with their trade and travel routes form a complicated web. Social networks on the other hand form subtler but more intricate web of links. Naturally information, goods and services reach the end user by taking several hops and through several channels. Until recently we did not take a critical look at bearing capacity, routing and robustness of the established systems. Research also reveals that the network that has been created based mainly on supply-demand dynamics is not optimal in many aspects. One serious concern about any networked system is its robustness against random node failure. In a real life setting it could mean breakout of infectious disease or flow of information in a social network. As can be imagined it is just matter of time before an otherwise benign abnormality leads to disastrous conditions, because of simple structural imperfections in a network, it is important to study structural robustness of different kinds of network. In our study we examine how different networked systems behave when nodes in them fail to respond properly. The real life analogy would be spread of disease from one city to another starting from one or more cities. We explore what kind of connection structure stand better chance in avoiding total failure.
 \subsection{Literature Review}
 Most of the disease models categorise the given population into different categories and model the evolution of number of population in each of those categories with a set of differential equations. The popular susceptible-infectious-recovered model (SIR) is modelled by following set of differential equations:
-\[ \frac{dS}{dt} = bN - \lambda S - dS,  \]
-\[ \frac{dI}{dt} = \lambda S - gI - dI, \]
-\[ \frac{dR}{dt} = gI - dR. \]\\
+\begin{equation}
+\begin{align*}
+\frac{dS}{dt} &= bN - \lambda S - dS,\\
+\frac{dI}{dt} &= \lambda S - gI - dI,\\
+\frac{dR}{dt} &= gI - dR.
+\end{align*}
+\end{equation}
 where $N = S + R + I$ is the total population size, $\lambda$ is the rate at which infectious individuals become infected, $g$ is the rate of recovery from infection, $d$ is the natural death rate and $b$ is the birth rate. The SIR models the diseases where there is no chance of infection once infected such as in the case of measles. Another popular model is susceptible-infectious-susceptible $SIS$ model which is given by following set of differential equations:
-\[ \frac{dS}{dt} = gI - \lambda S,  \]
-\[ \frac{dI}{dt} = \lambda S - gI. \]\\
+\begin{equation}
+\begin{align*}
+\frac{dS}{dt} = gI - \lambda S,
+\frac{dI}{dt} = \lambda S - gI.
+\end{align*}
+\end{equation}
 SIR model is used to model diseases where there are high chances of repeated infections such as in the case of STDs like Chlamydia.\\
 \\
 These standard models do not take into account the fact that pattern of interactions at individual level also play significant role in spread of disease. Standard Network Theoretic modelling of disease spread takes into account this factor by considering the network of individuals. Each individual is considered as a node and the possible interactions or contact between individuals is considered as a edge on the graph. The adjacency matrix $A$ is constructed such that $A_{ij} = 1$ if the disease can transfer from individual $i$ to individual $j$ and $0$ otherwise. The properties of the adjacency matrix can be studied to deduce about the structure of the network. To simulate disease spread in the network, different techniques has been used. One such model uses a simple equation
@@ -172,7 +182,7 @@ Most used methods in the node class are named as $runNode$ and $Sigmoid$. As the
 \section{Simulation Results and Discussion}
 The network is called N-1 robust if the damage it encounters is not significant under single node failure (or infection).  To see this, a series of simulation experiments were performed using the disaster-spreading equation (2) under single node failures. A node is initially infected, and the disease spreading observed. The network is than restored to its original state, and another node is infected and the disease spreading observed again. This is repeated for all the nodes of the network exhaustively. In the end, an array of health of nodes of the network is received for each iteration step for each of the single node failure scenario. Each of these array form an element of the ensemble for analysis of the final robustness metric of the network. \\
 \\
-Figure 1 shows the different types of networks studied in this paper. Small world network was studied for different distribution of node-degrees. These network were computer-generated using Watts-Strogatz algorithm. Figure 2 shows the degree distribution for these networks. As the probability of edge rewiring among the nodes is increased, the network signifies more and more random network, with non-uniform degree distribution. For $\beta=0$, the network is a ring lattice, with very small shortest path between any two nodes, and it represents the ideal small world network. For larger $\beta$, the shortest path between any two nodes increases. Figure 3 shows the simulation result for these networks under the model in equation (2). As $\beta$ increases, the damage the network encounters decreases on average. This is particularly visible during the first iteration where the damage the network with smallest $\beta$ experiences is significantly higher than those with larger $\beta$. As can be observed, the evolution of average health of nodes reaches equilibrium after 16 iterations for each of these networks. 
+Figure \ref{graphVis} shows the different types of networks studied in this paper. Small world network was studied for different distribution of node-degrees. These network were computer-generated using Watts-Strogatz algorithm. As the probability of edge rewiring among the nodes is increased, the network signifies more and more random network, with non-uniform degree distribution. For $\beta=0$, the network is a ring lattice, with very small shortest path between any two nodes, and it represents the ideal small world network. For larger $\beta$, the shortest path between any two nodes increases. Figure \ref{evolution} shows the simulation result for these networks under the model in equation (2). As $\beta$ increases, the damage the network encounters decreases on average. This is particularly visible during the first iteration where the damage the network with smallest $\beta$ experiences is significantly higher than those with larger $\beta$. As can be observed, the evolution of average health of nodes reaches equilibrium after 16 iterations for each of these networks. 
 
 \begin{figure}[!htb]
 \centering
@@ -180,6 +190,7 @@ Figure 1 shows the different types of networks studied in this paper. Small worl
 \subfigure[$\beta$=0.15]{\includegraphics[width=0.49\columnwidth]{images/wattsonb.jpg}}
 \subfigure[$\beta$=0.5]{\includegraphics[width=0.49\columnwidth]{images/wattsonc.jpg}}
 \subfigure[$\beta$=1]{\includegraphics[width=0.49\columnwidth]{images/wattsond.jpg}}
+\label{graphVis}
 \caption{Small world network constructed using Watts-Strogatz algorithm. The network size (N) and average node-degree (d) was fixed with N=20, and d=2, while the probability of rewiring ($\beta$) was gradually increased, making the network more and more random.}\label{fig:case-39-power-losses}
 \end{figure}
 \clearpage
@@ -190,14 +201,15 @@ Figure 1 shows the different types of networks studied in this paper. Small worl
 \subfigure[$\beta$=0.15]{\includegraphics[width=0.49\columnwidth]{images/newbetab.jpg}}
 \subfigure[$\beta$=0.5]{\includegraphics[width=0.49\columnwidth]{images/newbetac.jpg}}
 \subfigure[$\beta$=1]{\includegraphics[width=0.49\columnwidth]{images/newbetad.jpg}}
+\label{evolution}
 \caption{Evolution of disease spread in each iteration step for different networks..}\label{fig:case-39-power-losses}
-\end{figure}
-
-Figure 4 shows the robustness metric under N-1 attack scenario for each of these networks. Each of this scatter point quantifies the robustness of the corresponding network; the smaller the average proportion infected per iteration the more robust is the network. The trend in the plot is quite clear. For smaller $\beta$, the network is less robust. 
+\end{figure}\\
+Figure \ref{errorBar} shows the robustness metric under N-1 attack scenario for each of these networks. Each of this scatter point quantifies the robustness of the corresponding network; the smaller the average proportion infected per iteration the more robust is the network. The trend in the plot is quite clear. For smaller $\beta$, the network is less robust. 
 
 \begin{figure}[t!]
 \centering
 \includegraphics[width=0.70\columnwidth]{images/periteration.jpg}
+\label{errorBar}
 \caption{Robustness metric for different $\beta$}
 \end{figure}
 \clearpage
@@ -209,10 +221,10 @@ This paper confirms the smaller is the $\beta$ parameter of the small-world netw
 \begin{thebibliography}{9}
 \bibitem{shirley} Shirley, Mark D.F. and Rushton, Steve P. \textit{ The impacts of network topology on disease spread }, Ecological Complexity, 2005.
 
-\bibitem{helbing} Buzna, Lubos; Peters, Karsten; Ammoser, Hendrik;  Kuhnert, Christian and Helbing, Dirk.\textit{ Efficient Response to Cascading Disaster Spreading } .
+\bibitem{helbing} Buzna, Lubos; Peters, Karsten; Ammoser, Hendrik;  Kuhnert, Christian and Helbing, Dirk.\textit{ Efficient Response to Cascading Disaster Spreading }, Physical Review, 2007.
 
 \bibitem{keeling}
-Keeling, Matt J. and Ken T.D. Eames. \textit{ Networks and Epidemic Models } Journal of the Royal Society Interface 2.4 (2005): 295–307. PMC. Web. 7 Dec. 2015.
+Keeling, Matt J. and Ken T.D. Eames. \textit{ Networks and Epidemic Models } Journal of the Royal Society Interface, 2015.
 
 \end{thebibliography}
 
