@@ -1,11 +1,12 @@
-%clc
-%clear all
-%close all
+%% This forms the main part of simulation where the network data is read from the file,
+%% and within a loop each node is infected, and the network is simulated until specified 
+%% stopping criteria is fulfilled.
 
-time = .5;
+%% 
+time = .5; % time/timeStep gives the number of iterations the simulation is run
 timeStep = .1;
 stopCriteria = 0.01;
-initHealth = .6;
+initHealth = .6; % Initial health of infected node
 strengthMat = load('edge_strength1.txt');
 connectionDelayMat = load('edge_timedelay1.txt');
 nNodes = size(strengthMat,1);
@@ -38,19 +39,13 @@ for n = 1:(nNodes)
         net.list_nodes{h} = net.list_nodes{h}.setCurrentHealth(0);
     end
     net.list_nodes{n} = net.list_nodes{n}.setCurrentHealth(initHealth);
-    % simulate network
-    % while loop for matrix
-    %for i = 1:(time/timeStep)
     aPrevious = zeros(1, nNodes);
     aCurrent = zeros(1, nNodes);
     aCurrent(n) = initHealth;
     i = 0;
     maxIterations;
     while max(abs(aCurrent - aPrevious)) > stopCriteria
-        %while i < 6
         i = i + 1;
-        %aPrevious
-        %aCurrent
         aPrevious = aCurrent;
         net = net.simulateNetwork(timeStep);
         % write results to file
@@ -66,35 +61,3 @@ for n = 1:(nNodes)
     maxIterations(n) = i;
 end
 maxIterations
-
-%{
-timeStep = 0.1;
-maxConnectionDelay = 3; %in unit of timeSteps
-net = NetworkBase;
-node = Node(maxConnectionDelay, 0.1, 0.025, 0.5, 4);
-%node = node.setPos(0,0);
-net = net.addNode(node);
-node = Node(maxConnectionDelay, 0.1, 0.025, 0.5, 4);
-%node = node.setPos(1,1);
-net = net.addNode(node);
-net = net.connectAstoBs(1,2,.5, .1);
-net = net.connectAstoBs(2,1,.5, .1);
-net.list_nodes{1} = net.list_nodes{1}.setCurrentHealth(0.6);
-net.list_nodes{2} = net.list_nodes{2}.setCurrentHealth(0.6);
-net = net.simulateNetwork(timeStep);
-net.list_nodes{1}.health_
-net.list_nodes{2}.health_
-net = net.simulateNetwork(timeStep);
-net.list_nodes{1}.health_
-net.list_nodes{2}.health_
-net = net.simulateNetwork(timeStep);
-net.list_nodes{1}.health_
-net.list_nodes{2}.health_
-net = net.simulateNetwork(timeStep);
-net.list_nodes{1}.health_
-net.list_nodes{2}.health_
-net = net.simulateNetwork(timeStep);
-net.list_nodes{1}.health_
-net.list_nodes{2}.health_
-% plotNet(net)
-%}
