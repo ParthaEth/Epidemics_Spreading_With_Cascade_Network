@@ -1,1 +1,9 @@
 *asv
+*.aux
+*.bbl
+*.pdf
+*.log
+*.out
+*.toc
+*.blg
+doc/latex/Report.pdf
